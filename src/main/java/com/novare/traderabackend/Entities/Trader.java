@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -20,14 +21,23 @@ public class Trader {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String name;
 
     private String email;
 
-
     private String password;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
+    private AuctionItem auctionItem;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "trader", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Bid> bidList = new ArrayList<>();
+
 
     public Trader(String name, String email, String password) {
         this.name = name;
