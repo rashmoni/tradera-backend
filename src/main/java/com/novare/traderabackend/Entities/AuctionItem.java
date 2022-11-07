@@ -24,7 +24,7 @@ public class AuctionItem {
     private String item_name;
 
     private String description;
-    @Column(name = "owner_id", insertable = false, updatable = false, nullable = false)
+
     private Long owner_id;
     private String item_image_url;
 
@@ -33,17 +33,5 @@ public class AuctionItem {
     private Timestamp start_date;
 
     private Timestamp stop_date;
-    /*@OneToOne
-    @JoinColumn(name = "owner_id", updatable=false, insertable = false)
-    private User owner;*/
-
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
-    private Trader owner;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "auctionItem", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Bid> bidList = new ArrayList<>();
 
 }

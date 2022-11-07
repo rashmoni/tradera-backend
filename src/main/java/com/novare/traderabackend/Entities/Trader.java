@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -29,21 +27,11 @@ public class Trader {
 
     private String password;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @PrimaryKeyJoinColumn
-    private AuctionItem auctionItem;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "trader", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Bid> bidList = new ArrayList<>();
-
-
-    public Trader(String name, String email, String password) {
+/*    public Trader(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-    }
+    }*/
 
     @JsonIgnore
     public String getPassword() {

@@ -1,9 +1,7 @@
 package com.novare.traderabackend.Controller;
 
 import com.novare.traderabackend.Entities.AuctionItem;
-import com.novare.traderabackend.Entities.Trader;
 import com.novare.traderabackend.Repository.AuctionRepo;
-import com.novare.traderabackend.Repository.TraderRepo;
 import com.novare.traderabackend.Service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +18,7 @@ public class AuctionController {
     AuctionService auctionService;
     @Autowired
     AuctionRepo auctionRepo;
-    @Autowired
-    TraderRepo traderRepo;
+
 
     @GetMapping("/auctions")
     public List<AuctionItem> getAllItems() {
@@ -32,9 +29,6 @@ public class AuctionController {
 
     @PostMapping("/auctions/create")
     public ResponseEntity<Boolean> postNewAuction(@RequestBody AuctionItem auctionItem) {
-        Long ownerId = auctionItem.getOwner_id();
-        Trader trader = traderRepo.getReferenceById(ownerId);
-        auctionItem.setOwner(trader);
 
         auctionService.postNewAuction(auctionItem);
 
