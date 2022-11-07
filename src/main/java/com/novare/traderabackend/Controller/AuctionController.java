@@ -16,6 +16,7 @@ public class AuctionController {
 
     @Autowired
     AuctionService auctionService;
+    @Autowired
     AuctionRepo auctionRepo;
 
     @GetMapping("/auctions")
@@ -31,6 +32,11 @@ public class AuctionController {
         return ResponseEntity.ok(true);
     }
 
+    @GetMapping
+    @RequestMapping("/auctions/{id}")
+    public Optional<AuctionItem> getOneItem(@PathVariable Long id) {
+        return auctionRepo.findById(id);
+    }
 
 
 }
