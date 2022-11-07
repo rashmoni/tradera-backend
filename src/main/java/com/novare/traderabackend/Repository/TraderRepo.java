@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserRepo extends JpaRepository<Trader, Long> {
+public interface TraderRepo extends JpaRepository<Trader, Long> {
 
 }
