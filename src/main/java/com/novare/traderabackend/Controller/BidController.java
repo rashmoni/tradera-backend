@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bids")
 public class BidController {
-    private static final Logger logger = LoggerFactory.getLogger(BidController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(BidController.class);
     @Autowired
     private BidRepo bidRepo;
     @Autowired

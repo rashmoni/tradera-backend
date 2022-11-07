@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
 
 
@@ -20,13 +19,11 @@ public class Trader {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
-
     private String email;
-
     private String password;
 
+// I think this constructor might be unnecessary?
 /*    public Trader(String name, String email, String password) {
         this.name = name;
         this.email = email;

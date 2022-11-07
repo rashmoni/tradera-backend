@@ -17,9 +17,7 @@ public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Integer owner_id;
-
     private Integer auction_item_id;
     private Integer amount;
     private Timestamp creation_time;
