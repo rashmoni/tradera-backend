@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 
 @Entity
@@ -24,8 +21,6 @@ public class Trader {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-
 
     private String name;
 
