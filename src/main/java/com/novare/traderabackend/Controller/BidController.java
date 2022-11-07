@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,7 @@ public class BidController {
 //    private static final Logger logger = LoggerFactory.getLogger(BidController.class);
     @Autowired
     private BidRepo bidRepo;
-    @Autowired
-    private TraderRepo traderRepo;
+
     @Autowired
     private AuctionRepo auctionRepo;
 
@@ -32,6 +32,15 @@ public class BidController {
     public ResponseEntity<Bid> create(@RequestBody final Bid bid){
        // logger.info(String.valueOf(bid.getOwner_id()));
 
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        bid.setCreationTime(currentTime);
+
         return new ResponseEntity<>(bidRepo.saveAndFlush(bid), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    @RequestMapping("{auctionItemId}")
+    public List<Bid>getBidsByAuctionItemId(@PathVariable Long auctionItemId) {
+        return bidRepo.findByAuctionItemId(auctionItemId);
     }
 }
