@@ -31,10 +31,6 @@ public class AuctionController {
         return ResponseEntity.ok(true);
     }
 
-    @GetMapping
-    @RequestMapping("{id}")
-    public Optional<AuctionItem> getOneItem(Long id) {
-        return auctionRepo.findById(id);
-    }
+
 
 }
