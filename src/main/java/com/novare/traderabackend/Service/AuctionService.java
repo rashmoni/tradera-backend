@@ -11,10 +11,13 @@ public class AuctionService {
     @Autowired
     AuctionRepo auctionRepo;
     public List<AuctionItem> getAllItems() {
-        return auctionRepo.findAll();
+        List<AuctionItem> allAuctionsItem =  auctionRepo.findAll();
+        return allAuctionsItem;
     }
 
     public void postNewAuction(AuctionItem auctionItem) {
+        //write the logic to check if the item is already present in DB
         AuctionItem savedAuction = auctionRepo.save(auctionItem);
     }
+
 }

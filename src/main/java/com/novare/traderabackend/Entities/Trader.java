@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Trader {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +22,7 @@ public class User {
     private String email;
     private String password;
 
-    public User(String name, String email, String password) {
+    public Trader(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
