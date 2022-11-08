@@ -3,9 +3,9 @@ package com.novare.traderabackend.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 
@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Trader {
+@Builder
+public class Trader{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,13 +23,7 @@ public class Trader {
     private String name;
     private String email;
     private String password;
-
-// I think this constructor might be unnecessary?
-/*    public Trader(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }*/
+    private String roles;
 
     @JsonIgnore
     public String getPassword() {
