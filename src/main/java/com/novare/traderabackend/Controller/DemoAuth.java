@@ -3,6 +3,7 @@ package com.novare.traderabackend.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 //This class is for testing purpose
+
 @RestController
 public class DemoAuth {
 
