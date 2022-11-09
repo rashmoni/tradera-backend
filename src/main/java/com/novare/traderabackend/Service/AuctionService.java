@@ -5,6 +5,7 @@ import com.novare.traderabackend.Repository.AuctionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AuctionService {
@@ -20,4 +21,11 @@ public class AuctionService {
         AuctionItem savedAuction = auctionRepo.save(auctionItem);
     }
 
+    public List<AuctionItem> search(String searchTerm) {
+        List<AuctionItem> allAuctionItems =  auctionRepo.findAll();
+        List<AuctionItem> result = allAuctionItems.stream()
+                .filter(auctionItem -> auctionItem.getItem_name().contains(searchTerm))
+                .collect(Collectors.toList());
+        return result;
+    }
 }
