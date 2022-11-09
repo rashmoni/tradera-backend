@@ -20,4 +20,8 @@ public class AuctionService {
         AuctionItem savedAuction = auctionRepo.save(auctionItem);
     }
 
+    public List<AuctionItem> getByItemName(String name) {
+        return auctionRepo.findAuctionByName(name);
+
+    }
 }

@@ -42,4 +42,9 @@ public class AuctionController {
         return auctionRepo.findById(id);
     }
 
+    @GetMapping("/auctions/{name}")
+    public List<AuctionItem> getByItemName(@PathVariable String name) {
+        return auctionService.getByItemName(name);
+    }
+
 }
