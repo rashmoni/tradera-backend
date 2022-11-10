@@ -1,6 +1,7 @@
 package com.novare.traderabackend.Controller;
 
 import com.novare.traderabackend.Service.IStorageService;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -10,14 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 
 @RestController
+@Log4j2
 public class FilesController {
-    private static final Logger logger = LoggerFactory.getLogger(FilesController.class);
     private static IStorageService iStorageService;
 
     public FilesController(IStorageService iStorageService) {
@@ -33,11 +33,13 @@ public class FilesController {
         try {
             contentType = request.getServletContext().getMimeType(file.getFile().getAbsolutePath());
         } catch (IOException ex) {
-            logger.info("Could not determine file type.");
+            log.error("Could not determine file type.");
         }
         if (contentType == null) {
             contentType = "application/octet-stream";
         }
+
+        log.info("Image file processed");
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(contentType))
                 .body(file);
