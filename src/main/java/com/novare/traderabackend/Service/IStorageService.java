@@ -12,6 +12,7 @@ public interface IStorageService {
     void init();
 
     String store(MultipartFile file);
+
     String storeBase64(byte[] file);
 
     Stream<Path> loadAll();

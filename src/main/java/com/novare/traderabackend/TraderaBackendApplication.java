@@ -12,5 +12,4 @@ public class TraderaBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TraderaBackendApplication.class, args);
 	}
-
 }

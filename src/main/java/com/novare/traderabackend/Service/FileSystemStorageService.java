@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 
 
 @Service
-public class FileSystemStorageService implements IStorageService{
+public class FileSystemStorageService implements IStorageService {
 
     private static final Logger logger = LoggerFactory.getLogger(FileSystemStorageService.class);
 
@@ -42,8 +42,7 @@ public class FileSystemStorageService implements IStorageService{
     public void init() {
         try {
             Files.createDirectories(rootLocation);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }
     }
@@ -70,8 +69,7 @@ public class FileSystemStorageService implements IStorageService{
                         StandardCopyOption.REPLACE_EXISTING);
                 return storedFilename;
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file");
         }
     }
@@ -87,7 +85,7 @@ public class FileSystemStorageService implements IStorageService{
             Files.copy(inputStream, this.rootLocation.resolve(storedFilename),
                     StandardCopyOption.REPLACE_EXISTING);
             return storedFilename;
-        }catch (IOException e){
+        } catch (IOException e) {
             String errorMessage = String.format("%s: %s", "Error when storeBase64: ", e.getMessage());
             logger.error(errorMessage);
             return null;
@@ -103,15 +101,14 @@ public class FileSystemStorageService implements IStorageService{
             return Files.walk(this.rootLocation, 1)
                     .filter(path -> !path.equals(this.rootLocation))
                     .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
         }
     }
 
     /**
-     * Method that is capable of loading a file from its name
-     * Returns an object of type Path
+     * Method that is capable of loading a file from its name.
+     * Returns an object of type Path.
      */
     @Override
     public Path load(String filename) {
@@ -129,14 +126,12 @@ public class FileSystemStorageService implements IStorageService{
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
-            }
-            else {
+            } else {
                 throw new StorageFileNotFoundException(
                         "Could not read file: " + filename);
 
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new StorageFileNotFoundException("Could not read file: " + filename, e);
         }
     }
@@ -162,7 +157,5 @@ public class FileSystemStorageService implements IStorageService{
             throw new StorageException("Error deleting a file", e);
         }
     }
-
-
 }
 

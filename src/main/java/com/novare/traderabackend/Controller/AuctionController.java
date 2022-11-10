@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +52,9 @@ public class AuctionController {
             String completeURL = baseURL + imageURL;
             auctionItem.setItem_image_url(completeURL);
         }
+
+        Date today = Date.valueOf(LocalDate.now());
+        auctionItem.setStart_date(today);
 
         auctionService.postNewAuction(auctionItem);
 

@@ -31,7 +31,6 @@ public class BidController {
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Bid> create(@RequestBody final Bid bid){
-       // logger.info(String.valueOf(bid.getOwner_id()));
 
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         bid.setCreationTime(currentTime);
