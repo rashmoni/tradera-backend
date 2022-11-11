@@ -85,7 +85,7 @@ public class AuctionController {
         return auctionRepo.findById(id);
     }
 
-    @GetMapping("/auctions/{name}")
+    @GetMapping("/auctions/search/{name}")
     public List<AuctionItem> getByItemName(@PathVariable String name) {
 
         String message = "User tried to search with name: "+ name;

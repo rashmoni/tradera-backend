@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/bids")
 @Log4j2
 public class BidController {
-//    private static final Logger logger = LoggerFactory.getLogger(BidController.class);
     @Autowired
     private BidRepo bidRepo;
 
