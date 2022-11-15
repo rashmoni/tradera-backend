@@ -24,7 +24,7 @@ public class TraderController {
 
     @PostMapping("/signup")
     public ResponseEntity<Trader> register(@RequestBody Trader trader) {
-        // TODO: Add check for duplicate email.
+        // TODO: Add check for duplicate email
 
         String hashingSalt = null;
         try {
