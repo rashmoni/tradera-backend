@@ -25,6 +25,11 @@ public class TraderController {
     @PostMapping("/signup")
     public ResponseEntity<Trader> register(@RequestBody Trader trader) {
         // TODO: Add check for duplicate email
+        Trader alreadyRegistered = traderRepo.findByEmail(trader.getEmail());
+        if(alreadyRegistered != null) {
+            log.info("Duplicate email: " + trader.getEmail());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Trader());
+        }
 
         String hashingSalt = null;
         try {
@@ -35,6 +40,7 @@ public class TraderController {
         }
 
         traderRepo.save(trader);
+        log.info("User created: " + trader.getEmail() + " " + trader.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).body(trader);
     }
 
@@ -46,6 +52,7 @@ public class TraderController {
         Trader failedLogin = new Trader(id, "", "", "", "");
         // If email not found return failed login.
         if (loggedInTrader == null) {
+            log.info("User not found: " + trader.getEmail());
             return ResponseEntity.ok(failedLogin);
         }
 
@@ -53,13 +60,14 @@ public class TraderController {
         String password = null;
         try {
             password = PasswordEncryptor.get_SHA_256_securePassword(trader.getPassword(), hashingSalt);
-        } catch (NoSuchAlgorithmException e) {
-        }
+        } catch (NoSuchAlgorithmException e) {}
 
         if (!loggedInTrader.getPassword().equals(password)) {
+            log.warn("Failed sign in: " + trader.getEmail() + " " + trader.getPassword());
             return ResponseEntity.ok(failedLogin);
         }
 
+        log.info("User signed in: " + trader.getEmail());
         return ResponseEntity.ok(loggedInTrader);
     }
 }
