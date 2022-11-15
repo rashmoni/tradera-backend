@@ -23,7 +23,7 @@ public class Trader{
     private String name;
     private String email;
     private String password;
-    private String roles;
+    private String hashingSalt;
 
     @JsonIgnore
     public String getPassword() {
@@ -34,4 +34,7 @@ public class Trader{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @JsonIgnore
+    public String getHashingSalt() { return hashingSalt; }
 }

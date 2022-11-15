@@ -1,40 +1,65 @@
 package com.novare.traderabackend.Controller;
 
 import com.novare.traderabackend.Entities.Trader;
+import com.novare.traderabackend.Repository.TraderRepo;
 import com.novare.traderabackend.Service.TraderService;
+import com.novare.traderabackend.Utils.PasswordEncryptor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*")
+import java.security.NoSuchAlgorithmException;
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping
 @Log4j2
 public class TraderController {
     @Autowired
-    TraderService traderService;
+    TraderRepo traderRepo;
     @Autowired
-    PasswordEncoder passwordEncoder;
+    TraderService traderService;
 
     @PostMapping("/signup")
-    public String singup(@RequestBody Trader data){
-        try {
-            Trader traders = Trader.builder()
-                    .name(data.getName())
-                    .email(data.getEmail())
-                    .password(passwordEncoder.encode(data.getPassword()))
-                    .roles("ROLE_USER")
-                    .build();
-            traderService.saveTrader(traders);
+    public ResponseEntity<Trader> register(@RequestBody Trader trader) {
+        // TODO: Add check for duplicate email.
 
-            log.info("User created " + data.getEmail() + " " + data.getPassword());
-            return data.getName()+"  "+"Successfully created";
-        }catch (Exception e){
-            log.error(e.getMessage());
-            return e.getMessage();
+        String hashingSalt = null;
+        try {
+            hashingSalt = PasswordEncryptor.getSalt();
+            trader.setHashingSalt(hashingSalt);
+            trader.setPassword(PasswordEncryptor.get_SHA_256_securePassword(trader.getPassword(), hashingSalt));
+        } catch (NoSuchAlgorithmException e) {
         }
 
+        traderRepo.save(trader);
+        return ResponseEntity.status(HttpStatus.CREATED).body(trader);
     }
 
+    @PostMapping("/signin")
+    public ResponseEntity<Trader> login(@RequestBody Trader trader) {
+
+        Trader loggedInTrader = traderRepo.findByEmail(trader.getEmail());
+        Long id = Long.valueOf(0);
+        Trader failedLogin = new Trader(id, "", "", "", "");
+        // If email not found return failed login.
+        if (loggedInTrader == null) {
+            return ResponseEntity.ok(failedLogin);
+        }
+
+        String hashingSalt = loggedInTrader.getHashingSalt();
+        String password = null;
+        try {
+            password = PasswordEncryptor.get_SHA_256_securePassword(trader.getPassword(), hashingSalt);
+        } catch (NoSuchAlgorithmException e) {
+        }
+
+        if (!loggedInTrader.getPassword().equals(password)) {
+            return ResponseEntity.ok(failedLogin);
+        }
+
+        return ResponseEntity.ok(loggedInTrader);
+    }
 }

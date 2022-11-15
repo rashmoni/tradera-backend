@@ -1,5 +1,5 @@
 package com.novare.traderabackend.Service;
-
+/*
 import com.novare.traderabackend.Entities.TraderaUserDetails;
 import com.novare.traderabackend.Entities.Trader;
 import com.novare.traderabackend.Repository.TraderRepo;
@@ -25,4 +25,8 @@ public class TraderaUserDetailsService implements UserDetailsService {
 
         return trader.map(TraderaUserDetails::new).get();
     }
+
+
 }
+
+ */

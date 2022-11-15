@@ -13,6 +13,7 @@ import java.util.Optional;
 public class TraderService {
     @Autowired
     TraderRepo traderRepo;
+    /*
     public void saveTrader(Trader trader) {
 
         Optional<Trader> traderOptional = traderRepo.findTraderByEmail(trader.getEmail());
@@ -21,4 +22,6 @@ public class TraderService {
         }
         traderRepo.save(trader);
     }
+    */
+
 }
