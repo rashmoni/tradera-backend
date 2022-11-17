@@ -42,7 +42,7 @@ Project Management Documents:
 - [Database tables](https://docs.google.com/spreadsheets/d/1T2gENP0D5af4C3MKHxBcD_KEomvTXT6Jq8_IT8mSzTA/edit#gid=674144426)
 - [Database design](https://drive.google.com/file/d/1KD45lEZaYMRDiPXizOL4jeWYI-HImnre/view)
 - [Endpoints](https://docs.google.com/spreadsheets/d/10_qHvUzAGsDIyNdI4C2plUyh3_68f2mYYNZOdGGC72Q/edit#gid=0)
-- [Prototypes](https://www.figma.com/files/project/71854029/Team-project?fuid=1156193025529310698)
+
 
 ## Run
 To run this application do the following steps:
