@@ -1,6 +1,5 @@
 package com.novare.traderabackend.Controller;
 
-import com.novare.traderabackend.Entities.AuctionItem;
 import com.novare.traderabackend.Entities.Trader;
 import com.novare.traderabackend.Repository.TraderRepo;
 import com.novare.traderabackend.Utils.PasswordEncryptor;
@@ -50,7 +49,9 @@ public class TraderController {
             hashingSalt = PasswordEncryptor.getSalt();
             trader.setHashingSalt(hashingSalt);
             trader.setPassword(PasswordEncryptor.get_SHA_256_securePassword(trader.getPassword(), hashingSalt));
-        } catch (NoSuchAlgorithmException e) { throw new RuntimeException(e); }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("/signin")
@@ -76,7 +77,9 @@ public class TraderController {
 
         try {
             password = PasswordEncryptor.get_SHA_256_securePassword(trader.getPassword(), hashingSalt);
-        } catch (NoSuchAlgorithmException e) { throw new RuntimeException(e); }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
 
         if (!loggedInTrader.getPassword().equals(password)) {
             log.warn("Failed sign in: " + trader.getEmail() + " " + trader.getPassword());
@@ -89,7 +92,7 @@ public class TraderController {
     @RequestMapping("/traders/{id}")
     public Optional<Trader> getTrader(@PathVariable Long id) {
 
-        String message = "User tried to access /traders/id endpoint with id: "+id;
+        String message = "User tried to access /traders/id endpoint with id: " + id;
         log.info(message);
 
         return traderRepo.findById(id);
