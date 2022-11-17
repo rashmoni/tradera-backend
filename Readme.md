@@ -38,22 +38,15 @@ This is a team project, all Project management, Frontend and backend are develop
 
 ## Project Management Documents
 Project Management Documents:
-- [Trello Board](https://trello.com/invite/accept-board)
+- [Product Backlog](https://trello.com/invite/accept-board)
 - [Database tables](https://docs.google.com/spreadsheets/d/1T2gENP0D5af4C3MKHxBcD_KEomvTXT6Jq8_IT8mSzTA/edit#gid=674144426)
 - [Database design](https://drive.google.com/file/d/1KD45lEZaYMRDiPXizOL4jeWYI-HImnre/view)
-- [End points](https://docs.google.com/spreadsheets/d/10_qHvUzAGsDIyNdI4C2plUyh3_68f2mYYNZOdGGC72Q/edit#gid=0)
+- [Endpoints](https://docs.google.com/spreadsheets/d/10_qHvUzAGsDIyNdI4C2plUyh3_68f2mYYNZOdGGC72Q/edit#gid=0)
 
 ## Run
-To run this application do the following steps.
+To run this application do the following steps:
 1. git clone https://github.com/rashmoni/tradera-backend.git
 2. cd tradera-backend
 3. mvn install
 4. java -jar tradera-backend.jar
 5. Make sure "upload-dir" is present beside src in project directory, the images are served from this directory.
-
-## Folder structure -
-/tradera-backend
-- src
-- logs
-- upload-dir
-- pom.xml
