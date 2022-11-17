@@ -1,5 +1,6 @@
 package com.novare.traderabackend.Controller;
 
+import com.novare.traderabackend.Entities.AuctionItem;
 import com.novare.traderabackend.Entities.Trader;
 import com.novare.traderabackend.Repository.TraderRepo;
 import com.novare.traderabackend.Utils.PasswordEncryptor;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -81,5 +83,15 @@ public class TraderController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Trader(0L, "", "", "", ""));
         }
         return null;
+    }
+
+    @GetMapping
+    @RequestMapping("/traders/{id}")
+    public Optional<Trader> getTrader(@PathVariable Long id) {
+
+        String message = "User tried to access /traders/id endpoint with id: "+id;
+        log.info(message);
+
+        return traderRepo.findById(id);
     }
 }
