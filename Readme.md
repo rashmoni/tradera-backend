@@ -14,10 +14,11 @@ Novare Potential and TietoEvry
 Tradera is an online platform for selling items through auction.
 Traders can add item so that other user can bid for it and the winner will be able to buy the product.
 Tradera Backend is the backbone of this project, it provides RESTful APIs for the frontend.
-It is build on springboot and uses mysql database which is hosted on AWS RDS
+It is built on springboot and uses mysql database which is hosted on AWS RDS.
 
 # Collaboration
 This is a team project, all Project management, Frontend and backend are developed in collaboration.
+
 ### Team Members -
 1. Malla Gronqvist
 2. Mumtaz Fatima 
@@ -31,7 +32,11 @@ This is a team project, all Project management, Frontend and backend are develop
 * MySQL 8 - AWS RDS
 * Lombok
 
-## Project mamnagement Documents
+## System Architecture
+
+![img.png](img.png)
+
+## Project Management Documents
 Project Management Documents:
 - [Trello Board](https://trello.com/invite/accept-board)
 - [Database tables](https://docs.google.com/spreadsheets/d/1T2gENP0D5af4C3MKHxBcD_KEomvTXT6Jq8_IT8mSzTA/edit#gid=674144426)
