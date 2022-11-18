@@ -16,6 +16,9 @@ Traders can add item so that other user can bid for it and the winner will be ab
 Tradera Backend is the backbone of this project, it provides RESTful APIs for the frontend.
 It is built on springboot and uses mysql database which is hosted on AWS RDS.
 
+This backend should be used together with the Tradera frontend, which can be found here:
+[Tradera frontend](https://github.com/rashmoni/tradera-frontend)
+
 # Collaboration
 This is a team project, all Project management, Frontend and backend are developed in collaboration.
 
