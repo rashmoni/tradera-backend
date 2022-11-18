@@ -107,7 +107,7 @@ public class FileSystemStorageService implements IStorageService {
     }
 
     /**
-     * Method that is capable of loading a file from its name.
+     * Method that can load a file from its name.
      * Returns an object of type Path.
      */
     @Override
@@ -116,8 +116,8 @@ public class FileSystemStorageService implements IStorageService {
     }
 
     /**
-     * Method that is capable of loading a file from its name
-     * return a Resource object.
+     * Method that loads a file from its name.
+     * Returns a Resource object.
      */
     @Override
     public Resource loadAsResource(String filename) {
@@ -137,7 +137,7 @@ public class FileSystemStorageService implements IStorageService {
     }
 
     /**
-     * Method that removes all files from storage that exist in the rootLocation (inside project)
+     * Method that removes all files from storage that exist in the rootLocation.
      */
     @Override
     public void deleteAll() {
@@ -145,7 +145,7 @@ public class FileSystemStorageService implements IStorageService {
     }
 
     /**
-     * Method that removes a specific file from storage that exist in the rootLocation (inside project)
+     * Method that removes a specific file from storage in the rootLocation.
      */
     @Override
     public void delete(String filename) {

@@ -64,6 +64,7 @@ public class TraderController {
         }
 
         ResponseEntity<Trader> failedLogin = checkPassword(trader, loggedInTrader);
+
         if (failedLogin != null) return failedLogin;
 
         log.info("User signed in: " + trader.getEmail());

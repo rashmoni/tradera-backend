@@ -28,7 +28,6 @@ This is a team project, all Project management, Frontend and backend are develop
 * Java 17
 * Spring Boot 2.7.4
 * Spring Data JPA
-* Spring Security
 * MySQL 8 - AWS RDS
 * Lombok
 

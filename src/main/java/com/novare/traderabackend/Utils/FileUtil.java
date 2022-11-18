@@ -20,7 +20,7 @@ public final class FileUtil {
             return URLConnection.guessContentTypeFromStream(inputStream).split("/")[1];
         }catch (IOException e){
             logger.error("Could not determine file extension.");
-            throw  new IOException("FileUtil has an error cannot retrieve extension file");
+            throw  new IOException("FileUtil has an error, cannot retrieve extension file");
         }
     }
 
