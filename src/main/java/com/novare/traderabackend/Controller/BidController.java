@@ -35,10 +35,9 @@ public class BidController {
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Bid> create(@RequestBody final Bid bid){
-
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         bid.setCreationTime(currentTime);
-        String message = "User tried to access /bids/create endpoint with traderId: " + bid.getTraderId();
+        String message = "User tried to access /bids/create endpoint with bidData: " + bid;
         log.info(message);
 
         return new ResponseEntity<>(bidRepo.saveAndFlush(bid), HttpStatus.CREATED);
