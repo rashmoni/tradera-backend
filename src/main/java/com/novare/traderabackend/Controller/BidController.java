@@ -38,7 +38,7 @@ public class BidController {
 
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         bid.setCreationTime(currentTime);
-        String message = "User tried to access /bids/create endpoint with data: " + bid.getId();
+        String message = "User tried to access /bids/create endpoint with traderId: " + bid.getTraderId();
         log.info(message);
 
         return new ResponseEntity<>(bidRepo.saveAndFlush(bid), HttpStatus.CREATED);
